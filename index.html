@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Deja un Mensaje ES ANÓNIMO</title>
+</head>
+<body>
+    <h1 id="mensaje">Hola</h1>
+    <button id="boton">Presiona aquí</button>
+
+    <script>
+        document.getElementById('boton').addEventListener('click', function() {
+            let mensajeUsuario = prompt("Por favor, deja un mensaje:");
+            if (mensajeUsuario) {
+                document.getElementById('mensaje').innerText += " Hola";
+                fetch('/guardarMensaje', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ mensaje: mensajeUsuario })
+                });
+            }
+        });
+    </script>
+</body>
+</html>
